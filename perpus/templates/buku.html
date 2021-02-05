@@ -1,0 +1,77 @@
+ {% extends 'base.html' %}
+
+ {% block  content %}
+
+  <div class="container mt-5">
+   <h1>Selamat Datang Di Halaman Buku!!!</h1>
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="col-lg mx-auto">
+       
+        <a class=" btn btn-primary " href="{% url 'tambah-buku' %}">Tambah</a>
+        {% comment %} <button class="btn btn-success"> Tambah </button> {% endcomment %}
+       
+        
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      
+      <th scope="col">Id</th>
+      <th scope="col">Judul</th>
+      <th scope="col">Penulis</th>
+      <th scope="col">Penerbit</th>
+      <th scope="col">Jumlah</th>
+      <th scope="col">Kelompok</th>
+      <th scope="col">Cover</th>
+      <th scope="col">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for buku in bukus  %}
+    <tr>
+     
+      <td>{{forloop.counter}}</td>
+      <td>{{buku.judul}}</td>
+      <td>{{buku.penulis}}</td>
+      <td>{{buku.penerbit}}</td>
+      <td>{{buku.jumlah}}</td>
+      <td>{{buku.kelompok_id}}</td>
+      <td>
+      
+      {% if buku.cover %}
+      
+        <img src="{{ buku.cover.url }}" width="">
+      
+      {% endif %}
+      
+      
+      </td>
+     
+      <td>
+       <a class=" btn btn-info" href=" {% url 'ubah_buku' buku.id %} ">Edit</a> |
+        <a class=" btn btn-danger" href="{% url 'hapus' buku.id %}">Hapus</a>
+      
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+     
+
+        
+        
+      </div>
+    </div>
+    
+    </div>
+
+    {% endblock  %}

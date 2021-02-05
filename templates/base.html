@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title> {{ title }} </title>
+
+	<style type="text/css" href="{% static 'css/bootstrap.css' %} "></style>
+  
+	
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  
+
+	<style type="text/css">
+		
+		body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top">
+		<div class="container">
+    <a class="navbar-brand" href="{% url 'index' %}">PERPUS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+       
+          <a class="nav-link" href=" {% url 'index' %} ">Halaman Utama <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'buku' %}">Buku</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href=" {% url 'user' %} ">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+       
+      </ul>
+
+  <form class="form-inline my-3 my-md-0" method="POST" action="">
+        <input class="form-control mr-1" type="text" placeholder="Cari Buku" name="keyword" id="keyword" autocomplete="off">
+
+        <button class="form-control btn btn-success" type="submit" id="tombolCari">Cari</button>
+      </form>
+
+           <div class="dropdown ml-1">
+  <button class="btn dropdown-toggle " type="button" data-toggle="dropdown" >
+  {% if user.is_authenticated %}
+   {{ user }}
+  {% endif %}
+   
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Tentang Kami</a>
+    <a class="dropdown-item" href="#">Pengaturan</a>
+    <a class="dropdown-item" href=" {% url 'logout' %} ">Keluar</a>
+  </div>
+</div>
+ 
+     
+
+      
+    </div>
+    </div>
+  </nav>
+
+{% block content %}
+
+
+
+{% endblock %}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
+
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+
+</body>
+</html>

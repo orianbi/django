@@ -1,0 +1,34 @@
+{% extends 'auth.html' %}
+
+{% block content %}
+
+ {% if  user.is_authenticated %}
+ <meta http-equiv="refresh" content="0; url={% url 'index'%}" > </meta>
+
+ {% else %}
+  <div class="container text-center">
+
+  
+
+<h2 class="form-signin-heading"> Form Login</h2></br>
+
+    <form method="post" class="form-signin">
+            {% csrf_token %}
+
+            {{ form.as_p}}
+        
+        <button class="btn btn-primary ml-6">Login</button>
+        
+      </form>
+
+
+    </div> <!-- /container -->
+
+
+ 
+ 
+ {% endif %}
+
+
+{% endblock  %}
+
